@@ -1,0 +1,30 @@
+{
+  "name": "manish",
+  "version": "1.0.0",
+  "description": "manish Interactive ReactGlobe with markers",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-globe": "^5.0.2",
+    "react-icons": "^4.8.0",
+    "react-scripts": "^5.0.1",
+    "three": "0.118.3"
+  },
+  "devDependencies": {
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
