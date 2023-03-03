@@ -10,6 +10,7 @@
     "react-globe": "^5.0.2",
     "react-icons": "^4.8.0",
     "react-scripts": "^5.0.1",
+    "spinners-react": "^1.0.7",
     "three": "0.118.3"
   },
   "devDependencies": {
