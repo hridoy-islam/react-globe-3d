@@ -5,8 +5,7 @@ import './index.css'
 import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { SpinnerRoundOutlined } from 'spinners-react';
-import { RiCloseCircleLine } from 'react-icons/ri';
-import { GrNext } from 'react-icons/gr';
+import coffee from './assets/coffee.jpg'
 
 
 import markers from "./markers";
@@ -18,9 +17,8 @@ function markerTooltipRenderer(marker) {
 const options = {
   markerTooltipRenderer,
   globeCloudsOpacity: 0.8,
-  //cameraRotateSpeed: 0.5,
-  //cameraAutoRotateSpeed: 0.5,
   ambientLightColor: 'white',
+  focusDistanceRadiusScale: 2,
 };
 
 function App() {
@@ -59,7 +57,7 @@ function App() {
       pointerEventPosition: { x: event.clientX, y: event.clientY }
     });
     setDetails(null);
-    //globe.unlock()
+    
   }
   function onDefocus(previousFocus) {
     setEvent({
@@ -76,16 +74,21 @@ function App() {
       {drawer && (
         <div className="drawer"
           style={{
-            background: "white",
+            background: "#12373b",
+            color: "#fff",
             position: "absolute",
             fontSize: 20,
             bottom: 0,
             right: 0,
-            padding: 12
+            padding: 40,
           }}
         >
-          <p> <RiCloseCircleLine /> Close <span>Next <GrNext /></span></p>
-          <p>{drawer}</p>
+          <h2 className="pagetitle">Butter Roasted Coffe</h2>
+          <p style={{color: '#cbd5e1'}}>{drawer}</p>
+
+          <img src={coffee} alt={'thumbnail'} width='100%' height="auto" />
+
+          <p className="drawerText">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing from repetition, injected humour, or non-characteristic words etc.</p>
 
         </div>
          
@@ -117,6 +120,7 @@ function App() {
         initialCameraDistanceRadiusScale={3}
         onGetGlobe={setGlobe}
         onGlobeTextureLoaded={() => setLoading(false)}
+        
       />
 
       <h3 className="titleClass">{details && details}</h3>
