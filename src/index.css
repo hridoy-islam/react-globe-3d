@@ -16,7 +16,7 @@ body,
 .drawer {
     width: 350px;
     height: 100vh;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .pagetitle {

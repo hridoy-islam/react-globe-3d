@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "@react-spring/web": "^9.7.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-globe": "^5.0.2",

@@ -6,6 +6,10 @@ import "tippy.js/dist/tippy.css";
 import "tippy.js/animations/scale.css";
 import { SpinnerRoundOutlined } from 'spinners-react';
 import coffee from './assets/coffee.jpg'
+import globeTexture from './assets/earth-large.jpg'
+//import globeCloudsTexture from './assets/clouds-large.jpg'
+//import globeBackgroundTexture from './assets/bump-large.jpg'
+
 
 
 import markers from "./markers";
@@ -16,19 +20,16 @@ function markerTooltipRenderer(marker) {
 
 const options = {
   markerTooltipRenderer,
-  globeCloudsOpacity: 0.8,
-  ambientLightColor: 'white',
-  focusDistanceRadiusScale: 2,
+  enableCameraZoom: false,
 };
 
 function App() {
 
-  const [globe, setGlobe] = useState()
-  const [isLocked, setIsLocked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [event, setEvent] = useState(null);
   const [details, setDetails] = useState(null);
   const [drawer, setDrawer] = useState(null);
+
   function onClickMarker(marker, markerObject, event) {
     setEvent({
       type: "CLICK",
@@ -36,8 +37,8 @@ function App() {
       markerObjectID: markerObject.uuid,
       pointerEventPosition: { x: event.clientX, y: event.clientY }
     });
-    setDrawer(markerTooltipRenderer(marker));
-    globe.lock()
+    setDrawer(markerTooltipRenderer(marker))
+
   }
   function onMouseOverMarker(marker, markerObject, event) {
     setEvent({
@@ -47,7 +48,8 @@ function App() {
       pointerEventPosition: { x: event.clientX, y: event.clientY }
     });
     setDetails(markerTooltipRenderer(marker));
-    //globe.lock()
+
+
   }
   function onMouseOutMarker(marker, markerObject, event) {
     setEvent({
@@ -57,21 +59,25 @@ function App() {
       pointerEventPosition: { x: event.clientX, y: event.clientY }
     });
     setDetails(null);
-    
+
+
   }
   function onDefocus(previousFocus) {
     setEvent({
       type: "DEFOCUS",
       previousFocus
     });
-    setDetails(null);
-    setDrawer(null);
-    globe.unlock()
+    
+    setDetails(null)
+    setDrawer(null)
+
   }
 
+ 
   return (
     <div style={{ background: '#12373b' }}>
       {drawer && (
+        
         <div className="drawer"
           style={{
             background: "#12373b",
@@ -83,15 +89,18 @@ function App() {
             padding: 40,
           }}
         >
+          
           <h2 className="pagetitle">Butter Roasted Coffe</h2>
-          <p style={{color: '#cbd5e1'}}>{drawer}</p>
+          <p style={{ color: '#cbd5e1' }}>{drawer}</p>
 
           <img src={coffee} alt={'thumbnail'} width='100%' height="auto" />
 
           <p className="drawerText">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing from repetition, injected humour, or non-characteristic words etc.</p>
-
+          
         </div>
-         
+        
+        
+
       )}
 
       <div className="spinner">
@@ -102,7 +111,7 @@ function App() {
           color="#36ad47"
           secondaryColor="rgba(0, 0, 0, 0.44)"
           enabled={loading}
-          
+
         />
       </div>
 
@@ -110,17 +119,15 @@ function App() {
         height="100vh"
         markers={markers}
         options={options}
-        width="100vw"
+        width='100vw'
         onClickMarker={onClickMarker}
         onMouseOverMarker={onMouseOverMarker}
         onMouseOutMarker={onMouseOutMarker}
         onDefocus={onDefocus}
-        globeBackgroundTexture={null}
-        globeCloudsTexture={null}
+        globeTexture={globeTexture}
+        //globeBackgroundTexture={null}
         initialCameraDistanceRadiusScale={3}
-        onGetGlobe={setGlobe}
         onGlobeTextureLoaded={() => setLoading(false)}
-        
       />
 
       <h3 className="titleClass">{details && details}</h3>
